@@ -300,14 +300,17 @@ public final class FrmGestorVotante extends javax.swing.JFrame {
         String telefono = campoTelefono.getText();
         String correo = campoCorreo.getText();
         String ciudadResidencia = comboCiudadResidencia.getSelectedItem().toString();
-        
+
         //Validations
         if (numeroDocumento == null || numeroDocumento.isBlank() || nombre == null
                 || nombre.isBlank() || telefono == null
-                || telefono.isBlank() || correo == null || correo.isBlank())
-                         {
+                || telefono.isBlank() || correo == null || correo.isBlank()) {
 
             JOptionPane.showMessageDialog(null, "Debes ingresar la información");
+            return;
+        }
+        if (!validacionLetras(nombre)) {
+            JOptionPane.showMessageDialog(null, "El campo nombre debe contar únicamente con letras");
             return;
         }
         if (!validacionNumeros(telefono, numeroDocumento)) {
@@ -325,7 +328,7 @@ public final class FrmGestorVotante extends javax.swing.JFrame {
             ObtenerVotantes();
         }
         JOptionPane.showMessageDialog(rootPane, mensaje.getTexto());
-        
+
         // para limpiar los campos
         campoDocumento.setText("");
         campoNombre.setText("");
@@ -345,6 +348,10 @@ public final class FrmGestorVotante extends javax.swing.JFrame {
 
     public boolean validacionArroba(String correo) {
         return correo.contains(".com") && correo.contains("@");
+    }
+
+    public boolean validacionLetras(String nombre) {
+        return nombre.contains("^[a-zA-Z]+$");
     }
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         int columna = 1;

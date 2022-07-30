@@ -412,9 +412,13 @@ public final class FrmGestorCandidato extends javax.swing.JFrame {
                 || partido == null || partido.isBlank()
                 || descripcion == null || descripcion.isBlank()
                 || mensajeCampania == null || mensajeCampania.isBlank()
-                || propuestas == null || propuestas.isBlank()){
-            
+                || propuestas == null || propuestas.isBlank()) {
+
             JOptionPane.showMessageDialog(null, "Debes ingresar la información");
+            return;
+        }
+        if (!validacionLetras(nombre)) {
+            JOptionPane.showMessageDialog(null, "El campo nombre debe contar únicamente con letras");
             return;
         }
         if (!validacionNumeros(telefono, numeroDocumento)) {
@@ -442,7 +446,7 @@ public final class FrmGestorCandidato extends javax.swing.JFrame {
         campoDescripcion.setText("");
         campoMensajeCampania.setText("");
         campoPropuestas.setText("");
-        
+
     }//GEN-LAST:event_botonAgregarActionPerformed
     public boolean validacionNumeros(String telefono, String numeroDocumento) {
         try {
@@ -456,6 +460,10 @@ public final class FrmGestorCandidato extends javax.swing.JFrame {
 
     public boolean validacionArroba(String correo) {
         return correo.contains(".com") && correo.contains("@");
+    }
+
+    public boolean validacionLetras(String nombre) {
+        return nombre.contains("^[a-zA-Z]+$");
     }
 
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
