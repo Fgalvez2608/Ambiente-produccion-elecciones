@@ -1,4 +1,3 @@
-
 package Modelos;
 
 import Clases.ClsCandidato;
@@ -11,7 +10,7 @@ import java.util.LinkedList;
 
 /**
  *
- * @author FREDDY GALVEZ
+ * @author FREDDY GALVEZ - ALEX ORJUELA - WILSON LOPEZ
  */
 public class MdlCandidato {
 
@@ -21,8 +20,7 @@ public class MdlCandidato {
         jdbc.CrearConexion();
 
     }
-    
-    
+
     public ClsMensaje actualizarCandidato(ClsCandidato candidato) {
 
         ClsMensaje mensaje;
@@ -59,8 +57,7 @@ public class MdlCandidato {
             return mensaje;
         }
 
-    }       
-            
+    }
 
     public ClsMensaje eliminarCandidato(String idCandidato) {
 

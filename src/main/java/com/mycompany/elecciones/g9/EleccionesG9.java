@@ -6,7 +6,7 @@ package com.mycompany.elecciones.g9;
 
 /**
  *
- * @author FREDDY GALVEZ
+ * @author FREDDY GALVEZ - ALEX ORJUELA - WILSON LOPEZ
  */
 public class EleccionesG9 {
 

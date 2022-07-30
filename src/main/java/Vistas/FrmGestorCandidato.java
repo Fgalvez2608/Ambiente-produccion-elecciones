@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author FREDDY GALVEZ
+ * @author FREDDY GALVEZ - ALEX ORJUELA - WILSON LOPEZ
  */
 public final class FrmGestorCandidato extends javax.swing.JFrame {
 
@@ -29,6 +29,7 @@ public final class FrmGestorCandidato extends javax.swing.JFrame {
         this.botonNuevo.setVisible(false);
         this.botonActualizar.setVisible(false);
         ObtenerCandidatos();
+        this.setLocationRelativeTo(null);
 
     }
 
@@ -123,7 +124,7 @@ public final class FrmGestorCandidato extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Propuestas");
 
-        botonAgregar.setForeground(new java.awt.Color(153, 153, 255));
+        botonAgregar.setForeground(new java.awt.Color(0, 0, 255));
         botonAgregar.setText("Agregar");
         botonAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,6 +136,7 @@ public final class FrmGestorCandidato extends javax.swing.JFrame {
         campoPropuestas.setRows(5);
         jScrollPane4.setViewportView(campoPropuestas);
 
+        botonNuevo.setForeground(new java.awt.Color(0, 0, 0));
         botonNuevo.setText("Nuevo");
         botonNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,6 +144,7 @@ public final class FrmGestorCandidato extends javax.swing.JFrame {
             }
         });
 
+        botonActualizar.setForeground(new java.awt.Color(0, 0, 0));
         botonActualizar.setText("Actualizar");
         botonActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -285,6 +288,7 @@ public final class FrmGestorCandidato extends javax.swing.JFrame {
         tablaCandidatos.setToolTipText("");
         jScrollPane2.setViewportView(tablaCandidatos);
 
+        botonEliminar.setForeground(new java.awt.Color(204, 0, 0));
         botonEliminar.setText("Eliminar");
         botonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -292,6 +296,7 @@ public final class FrmGestorCandidato extends javax.swing.JFrame {
             }
         });
 
+        botonEditar.setForeground(new java.awt.Color(204, 0, 0));
         botonEditar.setText("Editar");
         botonEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -325,7 +330,7 @@ public final class FrmGestorCandidato extends javax.swing.JFrame {
         comboPestaniasCandidato.addTab("Lista Candidatos", jPanel2);
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 153, 153));
+        jLabel1.setForeground(new java.awt.Color(0, 0, 255));
         jLabel1.setText("Menu Registro Candidatos");
 
         botonVolver.setForeground(new java.awt.Color(0, 0, 0));
@@ -372,100 +377,6 @@ public final class FrmGestorCandidato extends javax.swing.JFrame {
         this.frameMenu.setVisible(true);
     }//GEN-LAST:event_botonVolverActionPerformed
 
-    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-
-        int columna = 1;
-        int fila = this.tablaCandidatos.getSelectedRow();
-
-        String id = this.tablaCandidatos.getModel().getValueAt(fila, columna).toString();
-
-        ClsMensaje mensaje = this.controlador.eliminarCandidato(id);
-
-        if (mensaje.getTipo().equals(ClsMensaje.OK)) {
-            ObtenerCandidatos();
-        }
-
-        JOptionPane.showMessageDialog(rootPane, mensaje.getTexto());
-
-    }//GEN-LAST:event_botonEliminarActionPerformed
-
-    private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
-
-        String numeroDocumento = campoDocumento.getText();
-        String nombre = campoNombre.getText();
-        String telefono = campoTelefono.getText();
-        String correo = campoCorreo.getText();
-        String partido = comboPartido.getSelectedItem().toString();
-        String ciudadOrigen = comboCiudadOrigen.getSelectedItem().toString();
-        String descripcion = campoDescripcion.getText();
-        String mensajeCampania = campoMensajeCampania.getText();
-        String propuestas = campoPropuestas.getText();
-
-        //validations
-        //Documento y telefono deben ser numeros
-        //Correo debe contener @ y .com
-        //Que tengan valor todos los campos
-        //Validacion campos requeridos
-        if (numeroDocumento == null || numeroDocumento.isBlank() || nombre == null
-                || nombre.isBlank() || telefono == null
-                || telefono.isBlank() || correo == null || correo.isBlank()
-                || partido == null || partido.isBlank()
-                || descripcion == null || descripcion.isBlank()
-                || mensajeCampania == null || mensajeCampania.isBlank()
-                || propuestas == null || propuestas.isBlank()) {
-
-            JOptionPane.showMessageDialog(null, "Debes ingresar la información");
-            return;
-        }
-        if (!validacionLetras(nombre)) {
-            JOptionPane.showMessageDialog(null, "El campo nombre debe contar únicamente con letras");
-            return;
-        }
-        if (!validacionNumeros(telefono, numeroDocumento)) {
-            JOptionPane.showMessageDialog(null, "El campo numero documento y telefono debe contener números");
-            return;
-        }
-        if (!validacionArroba(correo)) {
-            JOptionPane.showMessageDialog(null, "Ingrese una dirección de correo válida");
-            return;
-        }
-
-        //Se arma el objeto
-        ClsCandidato candidato = new ClsCandidato(partido, ciudadOrigen, descripcion, propuestas, mensajeCampania, numeroDocumento, nombre, telefono, correo);
-        ClsMensaje mensaje = this.controlador.agregarCandidato(candidato);
-        if (mensaje.getTipo().equals(ClsMensaje.OK)) {
-            ObtenerCandidatos();
-        }
-        JOptionPane.showMessageDialog(rootPane, mensaje.getTexto());
-
-        // para limpiar los campos
-        campoDocumento.setText("");
-        campoNombre.setText("");
-        campoTelefono.setText("");
-        campoCorreo.setText("");
-        campoDescripcion.setText("");
-        campoMensajeCampania.setText("");
-        campoPropuestas.setText("");
-
-    }//GEN-LAST:event_botonAgregarActionPerformed
-    public boolean validacionNumeros(String telefono, String numeroDocumento) {
-        try {
-            int validaTel = Integer.parseInt(telefono);
-            int validaNumDoc = Integer.parseInt(numeroDocumento);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    public boolean validacionArroba(String correo) {
-        return correo.contains(".com") && correo.contains("@");
-    }
-
-    public boolean validacionLetras(String nombre) {
-        return nombre.contains("^[a-zA-Z]+$");
-    }
-
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
 
         int columna = 1;
@@ -493,6 +404,71 @@ public final class FrmGestorCandidato extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botonEditarActionPerformed
 
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+
+        int columna = 1;
+        int fila = this.tablaCandidatos.getSelectedRow();
+
+        String id = this.tablaCandidatos.getModel().getValueAt(fila, columna).toString();
+
+        ClsMensaje mensaje = this.controlador.eliminarCandidato(id);
+
+        if (mensaje.getTipo().equals(ClsMensaje.OK)) {
+            ObtenerCandidatos();
+        }
+
+        JOptionPane.showMessageDialog(rootPane, mensaje.getTexto());
+    }//GEN-LAST:event_botonEliminarActionPerformed
+
+    private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
+
+        String numeroDocumento = campoDocumento.getText();
+        String nombre = campoNombre.getText();
+        String telefono = campoTelefono.getText();
+        String correo = campoCorreo.getText();
+        String partido = comboPartido.getSelectedItem().toString();
+        String ciudadOrigen = comboCiudadOrigen.getSelectedItem().toString();
+        String descripcion = campoDescripcion.getText();
+        String mensajeCampania = campoMensajeCampania.getText();
+        String propuestas = campoPropuestas.getText();
+
+        if (numeroDocumento == null || numeroDocumento.isBlank() || nombre == null
+                || nombre.isBlank() || telefono == null
+                || telefono.isBlank() || correo == null || correo.isBlank()
+                || partido == null || partido.isBlank()
+                || descripcion == null || descripcion.isBlank()
+                || mensajeCampania == null || mensajeCampania.isBlank()
+                || propuestas == null || propuestas.isBlank()) {
+
+            JOptionPane.showMessageDialog(null, "Debes ingresar la información");
+            return;
+        }
+        if (!validacionNumeros(telefono, numeroDocumento)) {
+            JOptionPane.showMessageDialog(null, "El campo numero documento y telefono debe contener números");
+            return;
+        }
+        
+        if (!validacionLetras(nombre)) {
+            JOptionPane.showMessageDialog(null, "El campo nombre debe contar únicamente con letras");
+            return;
+        }
+
+        if (!validacionArroba(correo)) {
+            JOptionPane.showMessageDialog(null, "Ingrese una dirección de correo válida");
+            return;
+        }
+
+        ClsCandidato candidato = new ClsCandidato(partido, ciudadOrigen, descripcion, propuestas, mensajeCampania, numeroDocumento, nombre, telefono, correo);
+
+        ClsMensaje mensaje = this.controlador.actualizarCandidato(candidato);
+
+        if (mensaje.getTipo().equals(ClsMensaje.OK)) {
+            ObtenerCandidatos();
+        }
+
+        JOptionPane.showMessageDialog(rootPane, mensaje.getTexto());
+    }//GEN-LAST:event_botonActualizarActionPerformed
+
     private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed
         this.botonActualizar.setVisible(false);
         this.botonAgregar.setVisible(true);
@@ -508,7 +484,7 @@ public final class FrmGestorCandidato extends javax.swing.JFrame {
         this.campoPropuestas.setText("");
     }//GEN-LAST:event_botonNuevoActionPerformed
 
-    private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
+    private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
 
         String numeroDocumento = campoDocumento.getText();
         String nombre = campoNombre.getText();
@@ -520,16 +496,66 @@ public final class FrmGestorCandidato extends javax.swing.JFrame {
         String mensajeCampania = campoMensajeCampania.getText();
         String propuestas = campoPropuestas.getText();
 
+        if (numeroDocumento == null || numeroDocumento.isBlank() || nombre == null
+                || nombre.isBlank() || telefono == null
+                || telefono.isBlank() || correo == null || correo.isBlank()
+                || partido == null || partido.isBlank()
+                || descripcion == null || descripcion.isBlank()
+                || mensajeCampania == null || mensajeCampania.isBlank()
+                || propuestas == null || propuestas.isBlank()) {
+
+            JOptionPane.showMessageDialog(null, "Debes ingresar la información");
+            return;
+        }
+        if (!validacionNumeros(telefono, numeroDocumento)) {
+            JOptionPane.showMessageDialog(null, "El campo numero documento y telefono debe contener números");
+            return;
+        }
+        if (!validacionLetras(nombre)) {
+            JOptionPane.showMessageDialog(null, "El campo nombre debe contar únicamente con letras");
+            return;
+        }
+        if (!validacionArroba(correo)) {
+            JOptionPane.showMessageDialog(null, "Ingrese una dirección de correo válida");
+            return;
+        }
+
         ClsCandidato candidato = new ClsCandidato(partido, ciudadOrigen, descripcion, propuestas, mensajeCampania, numeroDocumento, nombre, telefono, correo);
 
-        ClsMensaje mensaje = this.controlador.actualizarCandidato(candidato);
+        ClsMensaje mensaje = this.controlador.agregarCandidato(candidato);
 
         if (mensaje.getTipo().equals(ClsMensaje.OK)) {
             ObtenerCandidatos();
         }
 
         JOptionPane.showMessageDialog(rootPane, mensaje.getTexto());
-    }//GEN-LAST:event_botonActualizarActionPerformed
+        this.campoDocumento.setText("");
+        this.campoNombre.setText("");
+        this.campoTelefono.setText("");
+        this.campoCorreo.setText("");
+        this.campoDescripcion.setText("");
+        this.campoMensajeCampania.setText("");
+        this.campoPropuestas.setText("");
+
+    }//GEN-LAST:event_botonAgregarActionPerformed
+
+    public boolean validacionNumeros(String telefono, String numeroDocumento) {
+        try {
+            int validaTel = Integer.parseInt(telefono);
+            int validaNumDoc = Integer.parseInt(numeroDocumento);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    public boolean validacionArroba(String correo) {
+        return correo.contains(".com") && correo.contains("@");
+    }
+
+    public boolean validacionLetras(String nombre) {
+        return nombre.contains("^[a-zA-Z]+$");
+    }
 
     public void ObtenerCandidatos() {
         this.candidatos = this.controlador.ObtenerCandidatos();

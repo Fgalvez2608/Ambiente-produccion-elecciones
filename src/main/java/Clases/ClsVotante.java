@@ -3,7 +3,7 @@ package Clases;
 
 /**
  *
- * @author FREDDY GALVEZ
+ * @author FREDDY GALVEZ - ALEX ORJUELA - WILSON LOPEZ
  */
 public class ClsVotante extends ClsPersona {
     

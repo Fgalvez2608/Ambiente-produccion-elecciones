@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author FREDDY GALVEZ
+ * @author FREDDY GALVEZ - ALEX ORJUELA - WILSON LOPEZ
  */
 public final class FrmGestorVotante extends javax.swing.JFrame {
 
@@ -24,6 +24,7 @@ public final class FrmGestorVotante extends javax.swing.JFrame {
         this.botonNuevo.setVisible(false);
         this.botonActualizar.setVisible(false);
         ObtenerVotantes();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -35,6 +36,7 @@ public final class FrmGestorVotante extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         botonVotanteVolver = new javax.swing.JButton();
         comboPestaniasVotante = new javax.swing.JTabbedPane();
@@ -52,16 +54,22 @@ public final class FrmGestorVotante extends javax.swing.JFrame {
         botonAgregar = new javax.swing.JButton();
         botonNuevo = new javax.swing.JButton();
         botonActualizar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaVotantes = new javax.swing.JTable();
         botonEliminar = new javax.swing.JButton();
         botonEditar = new javax.swing.JButton();
 
+        jLabel10.setText("Ingresar solo numeros. (*)");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 153, 153));
+        jLabel1.setForeground(new java.awt.Color(0, 0, 204));
         jLabel1.setText("Menu Registro Votante");
 
         botonVotanteVolver.setForeground(new java.awt.Color(0, 0, 0));
@@ -84,7 +92,7 @@ public final class FrmGestorVotante extends javax.swing.JFrame {
         jLabel4.setText("Teléfono");
 
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Ciudad Residencia");
+        jLabel7.setText("Ciudad Residencia (*)");
 
         comboCiudadResidencia.setForeground(new java.awt.Color(0, 0, 0));
         comboCiudadResidencia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Leticia", "Medellin", "Arauca", "Barranquilla", "Bogota", "Cartagena", "Tunja", "Manizales", "Florencia", "Yopal", "Popayan", "Valledupar", "Quibdo", "Monteria", "Inirida", "San Jose del Guaviare", "Neiva", "Riohacha", "Santa Marta", "Villavicencio", "Pasto", "Cucuta", "Mocoa", "Armenia", "San Andres", "Bucaramanga", "Sincelejo", "Ibague", "Cali", "Mitu", "Puerto Carrenio" }));
@@ -92,7 +100,7 @@ public final class FrmGestorVotante extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Nombre Completo");
 
-        botonAgregar.setForeground(new java.awt.Color(153, 153, 255));
+        botonAgregar.setForeground(new java.awt.Color(0, 0, 153));
         botonAgregar.setText("Agregar Votante");
         botonAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,6 +108,7 @@ public final class FrmGestorVotante extends javax.swing.JFrame {
             }
         });
 
+        botonNuevo.setForeground(new java.awt.Color(0, 0, 0));
         botonNuevo.setText("Nuevo");
         botonNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,6 +116,7 @@ public final class FrmGestorVotante extends javax.swing.JFrame {
             }
         });
 
+        botonActualizar.setForeground(new java.awt.Color(0, 0, 0));
         botonActualizar.setText("Actualizar");
         botonActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,10 +124,26 @@ public final class FrmGestorVotante extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("Ingresar solo letras. (*)");
+
+        jLabel8.setText("Ingresar solo numeros. (*)");
+
+        jLabel9.setText("Ingresar solo numeros. (*)");
+
+        jLabel11.setText("Ingresar correo valido (*)");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(botonAgregar)
+                .addGap(58, 58, 58)
+                .addComponent(botonNuevo)
+                .addGap(50, 50, 50)
+                .addComponent(botonActualizar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(122, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,22 +154,18 @@ public final class FrmGestorVotante extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel3))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel9))
                         .addGap(61, 61, 61)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel8)
                             .addComponent(jLabel2)
                             .addComponent(jLabel5)
                             .addComponent(campoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(campoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(113, 113, 113))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(botonAgregar)
-                .addGap(58, 58, 58)
-                .addComponent(botonNuevo)
-                .addGap(50, 50, 50)
-                .addComponent(botonActualizar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,7 +178,11 @@ public final class FrmGestorVotante extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addGap(2, 2, 2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel8))
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel4))
@@ -164,16 +190,20 @@ public final class FrmGestorVotante extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel11))
+                .addGap(26, 26, 26)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(comboCiudadResidencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40))
+                .addGap(20, 20, 20))
         );
 
         comboPestaniasVotante.addTab("Formulario", jPanel1);
@@ -217,6 +247,7 @@ public final class FrmGestorVotante extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tablaVotantes);
 
+        botonEliminar.setForeground(new java.awt.Color(255, 0, 0));
         botonEliminar.setText("Eliminar");
         botonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -224,6 +255,7 @@ public final class FrmGestorVotante extends javax.swing.JFrame {
             }
         });
 
+        botonEditar.setForeground(new java.awt.Color(255, 0, 0));
         botonEditar.setText("Editar");
         botonEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -275,7 +307,7 @@ public final class FrmGestorVotante extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
+                .addContainerGap(94, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(botonVotanteVolver))
@@ -301,7 +333,6 @@ public final class FrmGestorVotante extends javax.swing.JFrame {
         String correo = campoCorreo.getText();
         String ciudadResidencia = comboCiudadResidencia.getSelectedItem().toString();
 
-        //Validations
         if (numeroDocumento == null || numeroDocumento.isBlank() || nombre == null
                 || nombre.isBlank() || telefono == null
                 || telefono.isBlank() || correo == null || correo.isBlank()) {
@@ -309,50 +340,57 @@ public final class FrmGestorVotante extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Debes ingresar la información");
             return;
         }
-        if (!validacionLetras(nombre)) {
-            JOptionPane.showMessageDialog(null, "El campo nombre debe contar únicamente con letras");
-            return;
-        }
         if (!validacionNumeros(telefono, numeroDocumento)) {
             JOptionPane.showMessageDialog(null, "El campo numero documento y telefono debe contener números");
             return;
         }
+
+        if (!validacionLetras(nombre)) {
+            JOptionPane.showMessageDialog(null, "El campo nombre debe contar únicamente con letras");
+            return;
+        }
+
         if (!validacionArroba(correo)) {
             JOptionPane.showMessageDialog(null, "Ingrese una dirección de correo válida");
             return;
         }
-        //Se arma el objeto
+
         ClsVotante votante = new ClsVotante(ciudadResidencia, numeroDocumento, nombre, telefono, correo);
+
         ClsMensaje mensaje = this.controlador.agregarVotante(votante);
+
         if (mensaje.getTipo().equals(ClsMensaje.OK)) {
             ObtenerVotantes();
         }
+
         JOptionPane.showMessageDialog(rootPane, mensaje.getTexto());
 
-        // para limpiar los campos
-        campoDocumento.setText("");
-        campoNombre.setText("");
-        campoTelefono.setText("");
-        campoCorreo.setText("");
+        this.campoDocumento.setText("");
+        this.campoNombre.setText("");
+        this.campoTelefono.setText("");
+        this.campoCorreo.setText("");
+
 
     }//GEN-LAST:event_botonAgregarActionPerformed
+
     public boolean validacionNumeros(String telefono, String numeroDocumento) {
         try {
             int validaTel = Integer.parseInt(telefono);
             int validaNumDoc = Integer.parseInt(numeroDocumento);
             return true;
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    public boolean validacionLetras(String nombre) {
+        return nombre.contains("^[a-zA-Z]+$");
     }
 
     public boolean validacionArroba(String correo) {
         return correo.contains(".com") && correo.contains("@");
     }
 
-    public boolean validacionLetras(String nombre) {
-        return nombre.contains("^[a-zA-Z]+$");
-    }
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         int columna = 1;
         int fila = this.tablaVotantes.getSelectedRow();
@@ -412,6 +450,28 @@ public final class FrmGestorVotante extends javax.swing.JFrame {
         String telefono = campoTelefono.getText();
         String correo = campoCorreo.getText();
         String ciudadResidencia = comboCiudadResidencia.getSelectedItem().toString();
+
+        if (numeroDocumento == null || numeroDocumento.isBlank() || nombre == null
+                || nombre.isBlank() || telefono == null
+                || telefono.isBlank() || correo == null || correo.isBlank()) {
+
+            JOptionPane.showMessageDialog(null, "Debes ingresar la información");
+            return;
+        }
+        if (!validacionNumeros(telefono, numeroDocumento)) {
+            JOptionPane.showMessageDialog(null, "El campo numero documento y telefono debe contener números");
+            return;
+        }
+
+        if (!validacionLetras(nombre)) {
+            JOptionPane.showMessageDialog(null, "El campo nombre debe contar únicamente con letras");
+            return;
+        }
+
+        if (!validacionArroba(correo)) {
+            JOptionPane.showMessageDialog(null, "Ingrese una dirección de correo válida");
+            return;
+        }
 
         ClsVotante votante = new ClsVotante(ciudadResidencia, numeroDocumento, nombre, telefono, correo);
 
@@ -508,11 +568,16 @@ public final class FrmGestorVotante extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboCiudadResidencia;
     private javax.swing.JTabbedPane comboPestaniasVotante;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 /**
  *
- * @author FREDDY GALVEZ
+ * @author FREDDY GALVEZ - ALEX ORJUELA - WILSON LOPEZ
  */
 public interface interfaceCrud {
 
