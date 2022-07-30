@@ -1,4 +1,3 @@
-
 package Vistas;
 
 import Clases.*;
@@ -402,16 +401,62 @@ public final class FrmGestorCandidato extends javax.swing.JFrame {
         String mensajeCampania = campoMensajeCampania.getText();
         String propuestas = campoPropuestas.getText();
 
+        //validations
+        //Documento y telefono deben ser numeros
+        //Correo debe contener @ y .com
+        //Que tengan valor todos los campos
+        //Validacion campos requeridos
+        if (numeroDocumento == null || numeroDocumento.isBlank() || nombre == null
+                || nombre.isBlank() || telefono == null
+                || telefono.isBlank() || correo == null || correo.isBlank()
+                || partido == null || partido.isBlank()
+                || descripcion == null || descripcion.isBlank()
+                || mensajeCampania == null || mensajeCampania.isBlank()
+                || propuestas == null || propuestas.isBlank()){
+            
+            JOptionPane.showMessageDialog(null, "Debes ingresar la información");
+            return;
+        }
+        if (!validacionNumeros(telefono, numeroDocumento)) {
+            JOptionPane.showMessageDialog(null, "El campo numero documento y telefono debe contener números");
+            return;
+        }
+        if (!validacionArroba(correo)) {
+            JOptionPane.showMessageDialog(null, "Ingrese una dirección de correo válida");
+            return;
+        }
+
+        //Se arma el objeto
         ClsCandidato candidato = new ClsCandidato(partido, ciudadOrigen, descripcion, propuestas, mensajeCampania, numeroDocumento, nombre, telefono, correo);
-
         ClsMensaje mensaje = this.controlador.agregarCandidato(candidato);
-
         if (mensaje.getTipo().equals(ClsMensaje.OK)) {
             ObtenerCandidatos();
         }
-
         JOptionPane.showMessageDialog(rootPane, mensaje.getTexto());
+
+        // para limpiar los campos
+        campoDocumento.setText("");
+        campoNombre.setText("");
+        campoTelefono.setText("");
+        campoCorreo.setText("");
+        campoDescripcion.setText("");
+        campoMensajeCampania.setText("");
+        campoPropuestas.setText("");
+        
     }//GEN-LAST:event_botonAgregarActionPerformed
+    public boolean validacionNumeros(String telefono, String numeroDocumento) {
+        try {
+            int validaTel = Integer.parseInt(telefono);
+            int validaNumDoc = Integer.parseInt(numeroDocumento);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean validacionArroba(String correo) {
+        return correo.contains(".com") && correo.contains("@");
+    }
 
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
 

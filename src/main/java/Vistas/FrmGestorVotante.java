@@ -1,4 +1,3 @@
-
 package Vistas;
 
 import Clases.*;
@@ -17,7 +16,6 @@ public final class FrmGestorVotante extends javax.swing.JFrame {
     JFrame frameMenu;
     CtlVotante controlador;
     LinkedList<ClsVotante> votantes;
-    
 
     public FrmGestorVotante(JFrame frameMenu) {
         initComponents();
@@ -302,20 +300,52 @@ public final class FrmGestorVotante extends javax.swing.JFrame {
         String telefono = campoTelefono.getText();
         String correo = campoCorreo.getText();
         String ciudadResidencia = comboCiudadResidencia.getSelectedItem().toString();
+        
+        //Validations
+        if (numeroDocumento == null || numeroDocumento.isBlank() || nombre == null
+                || nombre.isBlank() || telefono == null
+                || telefono.isBlank() || correo == null || correo.isBlank())
+                         {
 
+            JOptionPane.showMessageDialog(null, "Debes ingresar la información");
+            return;
+        }
+        if (!validacionNumeros(telefono, numeroDocumento)) {
+            JOptionPane.showMessageDialog(null, "El campo numero documento y telefono debe contener números");
+            return;
+        }
+        if (!validacionArroba(correo)) {
+            JOptionPane.showMessageDialog(null, "Ingrese una dirección de correo válida");
+            return;
+        }
+        //Se arma el objeto
         ClsVotante votante = new ClsVotante(ciudadResidencia, numeroDocumento, nombre, telefono, correo);
-
         ClsMensaje mensaje = this.controlador.agregarVotante(votante);
-
         if (mensaje.getTipo().equals(ClsMensaje.OK)) {
             ObtenerVotantes();
         }
-
         JOptionPane.showMessageDialog(rootPane, mensaje.getTexto());
-
+        
+        // para limpiar los campos
+        campoDocumento.setText("");
+        campoNombre.setText("");
+        campoTelefono.setText("");
+        campoCorreo.setText("");
 
     }//GEN-LAST:event_botonAgregarActionPerformed
+    public boolean validacionNumeros(String telefono, String numeroDocumento) {
+        try {
+            int validaTel = Integer.parseInt(telefono);
+            int validaNumDoc = Integer.parseInt(numeroDocumento);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
+    public boolean validacionArroba(String correo) {
+        return correo.contains(".com") && correo.contains("@");
+    }
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         int columna = 1;
         int fila = this.tablaVotantes.getSelectedRow();
@@ -332,7 +362,7 @@ public final class FrmGestorVotante extends javax.swing.JFrame {
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void botonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarActionPerformed
-       
+
         int columna = 1;
         int fila = this.tablaVotantes.getSelectedRow();
         String idVotante = this.tablaVotantes.getModel().getValueAt(fila, columna).toString();
@@ -348,12 +378,11 @@ public final class FrmGestorVotante extends javax.swing.JFrame {
             this.campoNombre.setText(votante.getNombre());
             this.campoTelefono.setText(votante.getTelefono());
             this.campoCorreo.setText(votante.getCorreo());
-            
 
             this.comboPestaniasVotante.setSelectedIndex(0);
         }
-        
-        
+
+
     }//GEN-LAST:event_botonEditarActionPerformed
 
     private void botonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonNuevoActionPerformed
@@ -362,16 +391,15 @@ public final class FrmGestorVotante extends javax.swing.JFrame {
         this.botonNuevo.setVisible(false);
         this.campoDocumento.setEnabled(true);
 
-   
         this.campoDocumento.setText("");
         this.campoNombre.setText("");
         this.campoTelefono.setText("");
         this.campoCorreo.setText("");
-        
+
     }//GEN-LAST:event_botonNuevoActionPerformed
 
     private void botonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarActionPerformed
-      
+
         String numeroDocumento = campoDocumento.getText();
         String nombre = campoNombre.getText();
         String telefono = campoTelefono.getText();
@@ -387,14 +415,14 @@ public final class FrmGestorVotante extends javax.swing.JFrame {
         }
 
         JOptionPane.showMessageDialog(rootPane, mensaje.getTexto());
-        
+
     }//GEN-LAST:event_botonActualizarActionPerformed
 
     public void ObtenerVotantes() {
         this.votantes = this.controlador.ObtenerVotantes();
         this.ActualizarTabla(votantes);
     }
-    
+
     public ClsVotante BuscarVotante(String idVotante) {
 
         for (ClsVotante votante : this.votantes) {
